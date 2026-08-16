@@ -2,10 +2,23 @@
 
 [![Soroban Smart Contracts CI](https://github.com/prerana-techi/Quest-Rewards-Platform/actions/workflows/contract_tests.yml/badge.svg)](https://github.com/prerana-techi/Quest-Rewards-Platform/actions/workflows/contract_tests.yml)
 [![Frontend & Integration CI](https://github.com/prerana-techi/Quest-Rewards-Platform/actions/workflows/frontend_ci.yml/badge.svg)](https://github.com/prerana-techi/Quest-Rewards-Platform/actions/workflows/frontend_ci.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/questrewardplatform/deploy-status)](https://questrewardplatform.netlify.app)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Stellar: Soroban](https://img.shields.io/badge/Stellar-Soroban-purple.svg)](https://stellar.org)
 
 > **Decentralized, on-chain bounty & quest platform on Stellar / Soroban** — post developer quests, lock reward tokens into non-custodial escrow, verify submissions trustlessly with role-based access control (RBAC), and auto-release payouts with cross-contract soulbound reputation badge minting. Built for hackathons, DAOs, and developer communities.
+
+### 🌐 Live Deployment
+
+🔗 **Live App**: [https://questrewardplatform.netlify.app](https://questrewardplatform.netlify.app)
+
+### 🎬 Demo Video
+
+[![Quest & Rewards Platform Demo](https://img.shields.io/badge/▶_Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](YOUR_YOUTUBE_VIDEO_LINK_HERE)
+
+> 📹 **Full Walkthrough**: [YOUR_YOUTUBE_VIDEO_LINK_HERE](YOUR_YOUTUBE_VIDEO_LINK_HERE)
+>
+> *Replace the link above with your YouTube video URL once uploaded.*
 
 ---
 
