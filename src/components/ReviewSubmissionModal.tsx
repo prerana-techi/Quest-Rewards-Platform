@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useQuestStore } from '@/store/useQuestStore';
 import { useWalletStore } from '@/store/useWalletStore';
 import { useContract } from '@/hooks/useContract';
+import { GasEstimator } from '@/components/GasEstimator';
 import { X, CheckCircle2, XCircle, AlertCircle, ExternalLink, ShieldCheck, Award } from 'lucide-react';
 
 export function ReviewSubmissionModal() {
@@ -129,12 +130,15 @@ export function ReviewSubmissionModal() {
             <textarea
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
-              rows={3}
+              rows={2}
               placeholder="Provide technical evaluation details..."
               className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:border-violet-500 focus:outline-none"
               required
             />
           </div>
+
+          {/* Gas & Resource Footprint */}
+          <GasEstimator operation="review_submission" estimatedXlmFee="0.00002 XLM" />
 
           {approve && quest && (
             <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-3.5 space-y-1.5">

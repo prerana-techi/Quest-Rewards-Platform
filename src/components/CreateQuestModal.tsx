@@ -6,6 +6,7 @@ import { useWalletStore } from '@/store/useWalletStore';
 import { useContract } from '@/hooks/useContract';
 import { SUPPORTED_TOKENS } from '@/config/network';
 import { BadgeTierType } from '@/types';
+import { GasEstimator } from '@/components/GasEstimator';
 import { X, Sparkles, Lock, AlertCircle, Check, Coins } from 'lucide-react';
 
 export function CreateQuestModal() {
@@ -227,6 +228,9 @@ export function CreateQuestModal() {
               />
             </div>
           </div>
+
+          {/* Gas Resource Estimator */}
+          <GasEstimator operation="create_quest" />
 
           {/* Escrow Lock Banner */}
           <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-4 space-y-2">
