@@ -24,22 +24,7 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: 1.88.0
           targets: wasm32-unknown-unknown
-          components: clippy, rustfmt
-
-      - name: Cache cargo registry & index
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            contracts/target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('contracts/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-
 
       - name: Run Soroban Contract Tests
         run: cargo test --manifest-path contracts/Cargo.toml -- --nocapture

@@ -11,6 +11,14 @@ jobs:
     name: Frontend Test & Build
     runs-on: ubuntu-latest
 
+    env:
+      NEXT_PUBLIC_STELLAR_NETWORK: testnet
+      NEXT_PUBLIC_STELLAR_RPC_URL: https://soroban-testnet.stellar.org
+      NEXT_PUBLIC_STELLAR_NETWORK_PASSPHRASE: "Test SDF Network ; September 2015"
+      NEXT_PUBLIC_QUEST_CORE_CONTRACT_ID: CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDR4
+      NEXT_PUBLIC_QUEST_REPUTATION_CONTRACT_ID: CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM
+      NEXT_PUBLIC_NATIVE_TOKEN_ADDRESS: CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,10 +27,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --legacy-peer-deps
 
       - name: Run Vitest Unit & Integration Tests
         run: npm run test
