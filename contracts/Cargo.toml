@@ -1,0 +1,15 @@
+[workspace]
+resolver = "2"
+members = [
+    "quest_reputation",
+    "quest_core",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Quest & Rewards Team <dev@questrewards.network>"]
+license = "Apache-2.0"
+
+[workspace.dependencies]
+soroban-sdk = "22.0.8"
