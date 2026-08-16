@@ -19,6 +19,7 @@ import {
   Sparkles,
   ExternalLink,
   ShieldCheck,
+  User,
 } from 'lucide-react';
 
 export function Navbar() {
@@ -33,6 +34,7 @@ export function Navbar() {
     { name: 'Activity', href: '/activity', icon: Activity, badge: pulseCount > 0 ? pulseCount : undefined },
     { name: 'Transactions', href: '/transactions', icon: Layers, isPulse: !!activeTxId },
     { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+    { name: 'Profile', href: '/profile', icon: User },
     { name: 'Settings', href: '/settings', icon: Settings },
   ];
 
@@ -129,6 +131,14 @@ export function Navbar() {
                     <p className="font-mono text-xs text-slate-200 break-all">{truncateAddress(address, 8, 8)}</p>
                   </div>
                   <div className="py-1">
+                    <Link
+                      href="/profile"
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center justify-between px-3 py-2 text-xs text-slate-300 hover:bg-slate-800/60 rounded-lg"
+                    >
+                      <span>My Profile & Badges</span>
+                      <User className="h-3.5 w-3.5 text-slate-400" />
+                    </Link>
                     <a
                       href={`https://stellar.expert/explorer/testnet/account/${address}`}
                       target="_blank"
