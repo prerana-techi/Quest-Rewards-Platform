@@ -1,0 +1,41 @@
+name: Production Deployment Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  validate-and-deploy:
+    name: Full Pipeline Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.88.0
+          targets: wasm32-unknown-unknown
+
+      - name: Run Contract Tests
+        run: cargo test --manifest-path contracts/Cargo.toml
+
+      - name: Build Contracts WASM
+        run: cargo build --manifest-path contracts/Cargo.toml --target wasm32-unknown-unknown --release
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Run Frontend Tests
+        run: npm run test
+
+      - name: Build Production Next.js App
+        run: npm run build

@@ -1,0 +1,53 @@
+name: Soroban Smart Contracts CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'contracts/**'
+      - '.github/workflows/contract_tests.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'contracts/**'
+      - '.github/workflows/contract_tests.yml'
+
+jobs:
+  test-and-build:
+    name: Test & Build Soroban Contracts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.88.0
+          targets: wasm32-unknown-unknown
+          components: clippy, rustfmt
+
+      - name: Cache cargo registry & index
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            contracts/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('contracts/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Run Soroban Contract Tests
+        run: cargo test --manifest-path contracts/Cargo.toml -- --nocapture
+
+      - name: Build Optimized WASM Contracts
+        run: cargo build --manifest-path contracts/Cargo.toml --target wasm32-unknown-unknown --release
+
+      - name: Verify WASM artifacts generated
+        run: |
+          ls -la contracts/target/wasm32-unknown-unknown/release/quest_core.wasm
+          ls -la contracts/target/wasm32-unknown-unknown/release/quest_reputation.wasm
