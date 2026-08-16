@@ -18,6 +18,7 @@ jobs:
       NEXT_PUBLIC_QUEST_CORE_CONTRACT_ID: CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDR4
       NEXT_PUBLIC_QUEST_REPUTATION_CONTRACT_ID: CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM
       NEXT_PUBLIC_NATIVE_TOKEN_ADDRESS: CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
+      CI: "true"
 
     steps:
       - name: Checkout repository
@@ -29,7 +30,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps --no-audit --no-fund
 
       - name: Run Vitest Unit & Integration Tests
         run: npm run test
